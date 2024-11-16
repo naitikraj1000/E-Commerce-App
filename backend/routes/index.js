@@ -43,7 +43,7 @@ router.post("/category-product",getCategoryWiseProduct)
 router.post("/product-details",getProductDetails)
 router.get("/search",searchProduct)
 router.post("/filter-product",filterProductController)
-router.post("/bulk-upload-product",authToken,bulkUploadProduct);
+router.post("/bulk-upload-product",bulkUploadProduct);
 
 //user add to cart
 router.post("/addtocart",authToken,addToCartController)
