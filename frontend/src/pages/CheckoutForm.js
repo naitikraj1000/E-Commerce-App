@@ -74,9 +74,7 @@ const CheckoutForm = ({ amount, products, onPaymentSuccess }) => {
                 color: '#303238',
                 fontSize: '16px',
                 fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                fontSmoothing: 'antialiased',
                 '::placeholder': { color: '#a0aec0' },
-                padding: '12px 14px',
               },
               invalid: {
                 color: '#e53e3e',
@@ -95,7 +93,7 @@ const CheckoutForm = ({ amount, products, onPaymentSuccess }) => {
         disabled={!stripe || processing}
         className="bg-blue-600 p-2 text-white w-full"
       >
-        {processing ? 'Processing...' : `Pay ${(amount / 100).toFixed(2)} USD`}
+        {processing ? 'Processing...' : `Pay ₹${(amount / 100).toFixed(2)}`}
       </button>
     </form>
   );

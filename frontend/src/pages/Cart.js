@@ -5,7 +5,7 @@ import displayINRCurrency from '../helpers/displayCurrency'
 import { MdDelete } from "react-icons/md";
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
-import CheckoutForm from './CheckoutForm'  // You will create this component (code below)
+import CheckoutForm from './CheckoutForm'
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY)
 
@@ -75,7 +75,7 @@ const Cart = () => {
     (prev, curr) => prev + curr.quantity * curr?.productId?.sellingPrice,
     0
   )
-  const totalPriceInCents = Math.round((totalPrice / 85) * 100) // Convert INR to USD cents approx.
+  const totalPriceInPaise = Math.round(totalPrice * 100) // INR to paise
 
   const handlePaymentSuccess = () => {
     context.fetchUserAddToCart()
@@ -90,7 +90,6 @@ const Cart = () => {
       </div>
 
       <div className='flex flex-col lg:flex-row gap-10 lg:justify-between p-4'>
-        {/* Product List */}
         <div className='w-full max-w-3xl'>
           {loading
             ? loadingCart.map((_, index) => (
@@ -112,7 +111,6 @@ const Cart = () => {
                     />
                   </div>
                   <div className='px-4 py-2 relative'>
-                    {/* Delete button */}
                     <div
                       className='absolute right-0 text-red-600 rounded-full p-2 hover:bg-red-600 hover:text-white cursor-pointer'
                       onClick={() => deleteCartProduct(product?._id)}
@@ -154,7 +152,6 @@ const Cart = () => {
               ))}
         </div>
 
-        {/* Summary & Payment */}
         <div className='mt-5 lg:mt-0 w-full max-w-sm'>
           {loading ? (
             <div className='h-36 bg-slate-200 border border-slate-300 animate-pulse'></div>
@@ -173,7 +170,7 @@ const Cart = () => {
 
               <Elements stripe={stripePromise}>
                 <CheckoutForm
-                  amount={totalPriceInCents}
+                  amount={totalPriceInPaise}
                   products={data.map((el) => ({
                     productId: el?.productId?._id,
                     quantity: el?.quantity,
