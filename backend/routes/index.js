@@ -17,40 +17,46 @@ const getCategoryWiseProduct = require('../controller/product/getCategoryWisePro
 const getProductDetails = require('../controller/product/getProductDetails')
 const addToCartController = require('../controller/user/addToCartController')
 const countAddToCartProduct = require('../controller/user/countAddToCartProduct')
-const addToCartViewProduct  = require('../controller/user/addToCartViewProduct')
+const addToCartViewProduct = require('../controller/user/addToCartViewProduct')
 const updateAddToCartProduct = require('../controller/user/updateAddToCartProduct')
 const deleteAddToCartProduct = require('../controller/user/deleteAddToCartProduct')
 const searchProduct = require('../controller/product/searchProduct')
 const filterProductController = require('../controller/product/filterProduct')
 const bulkUploadProduct = require('../controller/product/bulkuploadProduct')
+const paymentController = require('../controller/Payment/payment')
 
-
-router.post("/signup",userSignUpController)
-router.post("/signin",userSignInController)
-router.get("/user-details",authToken,userDetailsController)
-router.get("/userLogout",userLogout)
+router.post("/signup", userSignUpController)
+router.post("/signin", userSignInController)
+router.get("/user-details", authToken, userDetailsController)
+router.get("/userLogout", userLogout)
 
 //admin panel 
-router.get("/all-user",authToken,allUsers)
-router.post("/update-user",authToken,updateUser)
+router.get("/all-user", authToken, allUsers)
+router.post("/update-user", authToken, updateUser)
 
 //product
-router.post("/upload-product",authToken,UploadProductController)
-router.get("/get-product",getProductController)
-router.post("/update-product",authToken,updateProductController)
-router.get("/get-categoryProduct",getCategoryProduct)
-router.post("/category-product",getCategoryWiseProduct)
-router.post("/product-details",getProductDetails)
-router.get("/search",searchProduct)
-router.post("/filter-product",filterProductController)
-router.post("/bulk-upload-product",bulkUploadProduct);
+router.post("/upload-product", authToken, UploadProductController)
+router.get("/get-product", getProductController)
+router.post("/update-product", authToken, updateProductController)
+router.get("/get-categoryProduct", getCategoryProduct)
+router.post("/category-product", getCategoryWiseProduct)
+router.post("/product-details", getProductDetails)
+router.get("/search", searchProduct)
+router.post("/filter-product", filterProductController)
+router.post("/bulk-upload-product", bulkUploadProduct);
 
 //user add to cart
-router.post("/addtocart",authToken,addToCartController)
-router.get("/countAddToCartProduct",authToken,countAddToCartProduct)
-router.get("/view-card-product",authToken,addToCartViewProduct)
-router.post("/update-cart-product",authToken,updateAddToCartProduct)
-router.post("/delete-cart-product",authToken,deleteAddToCartProduct)
+router.post("/addtocart", authToken, addToCartController)
+router.get("/countAddToCartProduct", authToken, countAddToCartProduct)
+router.get("/view-card-product", authToken, addToCartViewProduct)
+router.post("/update-cart-product", authToken, updateAddToCartProduct)
+router.post("/delete-cart-product", authToken, deleteAddToCartProduct)
+
+//payment
+router.post("/create-payment-intent", authToken, paymentController)
+
+
+
 
 
 

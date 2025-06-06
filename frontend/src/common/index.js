@@ -76,7 +76,11 @@ const SummaryApi = {
     filterProduct : {
         url : `${backendDomin}/api/filter-product`,
         method : 'post'
-    }
+    },
+    makePayment : {
+        url : `${backendDomin}/api/create-payment-intent`,
+        method : 'post'
+    },
 }
 
 
