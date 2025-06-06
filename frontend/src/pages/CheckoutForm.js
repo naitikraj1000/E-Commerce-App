@@ -6,6 +6,8 @@ const CheckoutForm = ({ amount, products, onPaymentSuccess }) => {
   const stripe = useStripe();
   const elements = useElements();
 
+  const [cardholderName, setCardholderName] = useState('');
+  const [email, setEmail] = useState('');
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(false);
 
@@ -39,7 +41,13 @@ const CheckoutForm = ({ amount, products, onPaymentSuccess }) => {
       const cardElement = elements.getElement(CardElement);
 
       const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(data.clientSecret, {
-        payment_method: { card: cardElement },
+        payment_method: {
+          card: cardElement,
+          billing_details: {
+            name: cardholderName,
+            email: email,
+          },
+        },
       });
 
       if (stripeError) {
@@ -58,6 +66,24 @@ const CheckoutForm = ({ amount, products, onPaymentSuccess }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <input
+        type="text"
+        placeholder="Cardholder Name"
+        value={cardholderName}
+        onChange={(e) => setCardholderName(e.target.value)}
+        required
+        className="border border-gray-300 rounded px-3 py-2 w-full"
+      />
+
+      <input
+        type="email"
+        placeholder="Email Address"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        className="border border-gray-300 rounded px-3 py-2 w-full"
+      />
+
       <div
         style={{
           border: '1px solid #cbd5e0',

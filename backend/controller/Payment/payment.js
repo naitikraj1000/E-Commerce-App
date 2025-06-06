@@ -32,7 +32,7 @@ const paymentController = async (req, res) => {
       description: 'Payment for products',
       metadata: {
         integration_check: 'accept_a_payment',
-        product_info: JSON.stringify(products),
+        product_info: JSON.stringify(products)
       },
     }, {
       idempotencyKey,

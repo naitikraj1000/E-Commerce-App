@@ -167,7 +167,7 @@ const Cart = () => {
                 <p>Total Price</p>
                 <p>{displayINRCurrency(totalPrice)}</p>
               </div>
-
+               
               <Elements stripe={stripePromise}>
                 <CheckoutForm
                   amount={totalPriceInPaise}
