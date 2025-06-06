@@ -81,6 +81,10 @@ const SummaryApi = {
         url : `${backendDomin}/api/create-payment-intent`,
         method : 'post'
     },
+    orderList:{
+        url : `${backendDomin}/api/order-list`,
+        method : 'get'
+    }
 }
 
 

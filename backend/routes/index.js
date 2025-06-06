@@ -24,6 +24,7 @@ const searchProduct = require('../controller/product/searchProduct')
 const filterProductController = require('../controller/product/filterProduct')
 const bulkUploadProduct = require('../controller/product/bulkuploadProduct')
 const paymentController = require('../controller/Payment/payment')
+const orderlist = require('../controller/Payment/orderlist')
 
 router.post("/signup", userSignUpController)
 router.post("/signin", userSignInController)
@@ -54,7 +55,7 @@ router.post("/delete-cart-product", authToken, deleteAddToCartProduct)
 
 //payment
 router.post("/create-payment-intent", authToken, paymentController)
-
+router.get("/order-list",authToken,orderlist);
 
 
 

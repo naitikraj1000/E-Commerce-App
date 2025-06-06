@@ -1,9 +1,11 @@
 const stripe = require('../../helpers/stripe'); // Ensure this exports Stripe instance with secret key
+const orderprocessing = require('./order');
 const { v4: uuidv4 } = require('uuid');
 
 const paymentController = async (req, res) => {
   try {
     const { amount, products } = req.body;
+    const userId = req.userId; // Assuming userId is set by auth middleware
 
     // Validate amount
     if (!amount || isNaN(amount) || amount <= 0) {
@@ -38,7 +40,7 @@ const paymentController = async (req, res) => {
       idempotencyKey,
     });
 
-    console.log("Payment Intent created:", paymentIntent.id);
+    await orderprocessing(userId, products, amount, paymentIntent.id);
 
     res.status(200).json({
       success: true,

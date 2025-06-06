@@ -174,6 +174,7 @@ const Cart = () => {
                   products={data.map((el) => ({
                     productId: el?.productId?._id,
                     quantity: el?.quantity,
+                    price: el?.productId?.sellingPrice,
                   }))}
                   onPaymentSuccess={handlePaymentSuccess}
                 />
